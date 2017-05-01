@@ -175,7 +175,9 @@ public class InitEvent {
        gui.getFinishButton().setOnAction(new EventHandler<ActionEvent>(){
            @Override
             public void handle(ActionEvent e){
-                gui.getSlider().setValue(gui.getSlider().getMin());
+                //gui.getSlider().setValue(gui.getSlider().getMin());
+                gw.isFinish=true;
+                System.out.println("gw.isfinish"+ gw.isFinish);
                 }
        }
        );
@@ -232,6 +234,16 @@ public class InitEvent {
         gui.getReadFileButton().setDisable(true);
         gui.getGrahamButton().setDisable(true);
         gui.getCanvas().setOnMousePressed(null);
+        gui.getGenerateButton().setDisable(true);
+    }
+    
+    public void diableWhilePause(){
+        disableWhileRuning();
+        gui.getFinishButton().setDisable(true);
+        
+    }
+    public void enableAfterPause(){
+        gui.getFinishButton().setDisable(false);
     }
     
     public void enableAfterRuning(){
@@ -249,7 +261,11 @@ public class InitEvent {
                 cd.drawPoints(gui.getGc(),event.getX(),event.getY());
         }
     });
+        gw.isFinish=false;
+        gw.isPause = false;
+        gui.getGenerateButton().setDisable(false);
     }
+    
     
     
 }

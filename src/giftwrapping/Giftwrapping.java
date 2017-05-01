@@ -41,6 +41,15 @@ public class Giftwrapping extends Application {
     private ObservableList<Point> points = FXCollections.observableArrayList();
     private ObservableList<Step> steps =  FXCollections.observableArrayList();
     public boolean isPause = false;
+    public boolean isFinish = false;
+
+    public boolean isIsFinish() {
+        return isFinish;
+    }
+
+    public void setIsFinish(boolean isFinish) {
+        this.isFinish = isFinish;
+    }
     public InitEvent ie;
 
     public InitEvent getIe() {

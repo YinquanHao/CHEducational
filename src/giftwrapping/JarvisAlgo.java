@@ -49,6 +49,7 @@ public class JarvisAlgo {
         double maxY=0;
         //if there is fewer than three points return
         if(numberOfPoints<3){
+            gw.ie.enableAfterRuning();
             return;
         }
         //get the right most point
@@ -76,8 +77,10 @@ public class JarvisAlgo {
         dominate.add(rightMostPoint);
         System.out.println("is null" + gw);
         gw.getSteps().add(new Step(gw.StringMod(ADD_RIGHT_MOST_TO_CONVEX, Integer.toString(rightMostPoint.getIndex()))));
-        cd.drawLineSet(gc, res);
-        cd.drawDominatePoints(gc, dominate);
+        if(gw.isFinish==false){
+            cd.drawLineSet(gc, res);
+            cd.drawDominatePoints(gc, dominate);
+        }
         
         
         gw.getSteps().add(new Step(gw.StringMod(ADD_TO_DOMINATE, Integer.toString(rightMostPoint.getIndex()))));
@@ -90,10 +93,12 @@ public class JarvisAlgo {
             System.out.println(" p = "+p +"q = "+q);
             for (int i = 0; i < numberOfPoints; i++){
                 System.out.println("naidnjsandknsajdnjasndnsadjnksadnjk"+gw.isPause);
-                if(gw.isPause==true){
+                 if(gw.isPause==true){
+                    gw.ie.diableWhilePause();
                     while(gw.isPause==true){
                         Thread.sleep(200);
                     }
+                gw.ie.enableAfterPause();
                 }
                 
                 String[] args = {Integer.toString(p),Integer.toString(i),Integer.toString(q)};
@@ -102,26 +107,33 @@ public class JarvisAlgo {
               if (CCW(input.get(p), input.get(i), input.get(q))){
                   gw.getSteps().add(new Step(gw.StringModMutiple(IS_CCW, args)));
                   res.push(input.get(q));
+                  if(gw.isFinish==false){
                   cd.drawTriangle(gc,input.get(p),input.get(i),input.get(q));
                   //cd.drawLineSet(gc, res);
                   cd.drawDominatePoints(gc, dominate);
+                  }
                   //Thread.sleep((long)gui.getSlider().getValue());
                   res.pop();
+                  if(gw.isFinish==false){
                   cd.repaint(gc, points);
                   cd.drawLineSet(gc, res);
                   cd.drawDominatePoints(gc, dominate);
+                  }
                   System.out.println("is ccw p = "+p + " i = "+ i +" q = "+q+"? "+ CCW(input.get(p), input.get(i), input.get(q)) );
                  q = i;
               }else{
+                  if(gw.isFinish==false){
                   cd.repaint(gc, points);
                   cd.drawLineSet(gc, res);
                   cd.drawDominatePoints(gc, dominate);
                   cd.drawTriangle(gc,input.get(p),input.get(i),input.get(q));
-                  
+                  }
                   //Thread.sleep((long)gui.getSlider().getValue());
                   gw.getSteps().add(new Step(gw.StringModMutiple(NOT_CCW, args)));
               }
+              if(gw.isFinish==false){
               Thread.sleep((long)gui.getSlider().getValue());
+              }
             }
             System.out.println("q = "+q);
             if(!input.get(q).equals(rightMostPoint)){

@@ -40,6 +40,7 @@ public class GrahmAlgo {
         int numberOfPoints = input.size();
         //if there is no point return null
         if(numberOfPoints==0){
+            gw.ie.enableAfterRuning();
             return;
         }
         pointArray = new Point[numberOfPoints];
@@ -65,22 +66,34 @@ public class GrahmAlgo {
         gw.getSteps().add(new Step(gw.StringMod(ADD_TO_CONVEX_TURE, Integer.toString(pointArray[0].getIndex()))));
         
         System.out.println("push"+ pointArray[0].getIndex());
-        cd.highlightVertice(gc,pointArray[0]);
+        
+        
+        if(gw.isFinish==false){
+            cd.highlightVertice(gc,pointArray[0]);
+        }
+        
+        
+        
         System.out.println("get the highest point");
         
         //if there is only one point return res with one pt
         if(numberOfPoints==1){
+            gw.ie.enableAfterRuning();
             return;
         }
         
         for(int i=1;i<pointArray.length;i++){
             if(gw.isPause==true){
+                gw.ie.diableWhilePause();
                     while(gw.isPause==true){
                         Thread.sleep(200);
                     }
+                gw.ie.enableAfterPause();
                 }
-            Thread.sleep((long)gui.getSlider().getValue());
-            cd.drawLine(gc,pointArray[0],pointArray[i]);
+            if(gw.isFinish==false){
+                Thread.sleep((long)gui.getSlider().getValue());
+                cd.drawLine(gc,pointArray[0],pointArray[i]);
+            }
             String [] args = {Integer.toString(pointArray[i].getIndex()),Integer.toString(i)};
             gw.getSteps().add(new Step(gw.StringModMutiple(SORT, args)));
         }
@@ -122,6 +135,9 @@ public class GrahmAlgo {
             System.out.println("      ");
         System.out.println("push"+ pointArray[k2 - 1].getIndex());
         
+        
+        
+        if(gw.isFinish==false){
         cd.highlightLine(gc,pointArray[0],pointArray[k2-1]);
         Thread.sleep((long)gui.getSlider().getValue());
         /*
@@ -133,14 +149,18 @@ public class GrahmAlgo {
         cd.drawLineSet(gc, res);
         cd.drawDominatePointsFromStack(gc, dominate);
         System.out.println("res size"+res.size());
+        }
+        
         
         
         for (int i = k2; i < numberOfPoints; i++)
         {
             if(gw.isPause==true){
+                    gw.ie.diableWhilePause();
                     while(gw.isPause==true){
                         Thread.sleep(200);
                     }
+                gw.ie.enableAfterPause();
                 }
             Point top = res.pop();
             double popedMaxY= localMaxY.pop();
@@ -159,9 +179,11 @@ public class GrahmAlgo {
             while (Point.isCcw(res.peek(), top, pointArray[i]) <= 0)
             {
                 if(gw.isPause==true){
+                    gw.ie.diableWhilePause();
                     while(gw.isPause==true){
                         Thread.sleep(200);
                     }
+                gw.ie.enableAfterPause();
                 }
                 String [] args = {Integer.toString(res.peek().getIndex()),Integer.toString(top.getIndex()),Integer.toString(pointArray[i].getIndex())};
                 gw.getSteps().add(new Step(gw.StringModMutiple(CHK_IF_CCW, args)));
@@ -181,8 +203,11 @@ public class GrahmAlgo {
                 
                 gw.getSteps().add(new Step(gw.StringMod(POP, Integer.toString(top.getIndex()))));
                 System.out.println("pop"+ top.getIndex());
+                
+                if(gw.isFinish==false){
                 cd.highlightVertice(gc,top);
                 Thread.sleep((long)gui.getSlider().getValue());
+                }
                 whileloopCounter++;
             }
             String [] args = {Integer.toString(res.peek().getIndex()),Integer.toString(top.getIndex()),Integer.toString(pointArray[i].getIndex())};
@@ -200,10 +225,12 @@ public class GrahmAlgo {
                         System.out.println(res.get(m).getIndex());
                         System.out.println("v      ");
                     }
+        if(gw.isFinish==false){
         cd.repaint(gc, points);
         System.out.println("res size before"+res.size());
         cd.drawLineSet(gc, res);
         cd.drawDominatePointsFromStack(gc, dominate);
+        }
         System.out.println("res size"+res.size());
         
             }
@@ -217,6 +244,9 @@ public class GrahmAlgo {
             
             gw.getSteps().add(new Step(gw.StringMod(ADD_TO_CONVEX, Integer.toString( pointArray[i].getIndex()))));
             //cd.highlightLine(gc,top,pointArray[i]);
+            
+            
+            if(gw.isFinish==false){
             Thread.sleep((long)gui.getSlider().getValue());
             
             for(int m=res.size()-1; m>=0;m--)  
@@ -228,13 +258,14 @@ public class GrahmAlgo {
             System.out.println("res size before"+res.size());
             cd.drawLineSet(gc, res);
             cd.drawDominatePointsFromStack(gc, dominate);
+            }
             System.out.println("res size"+res.size());
         
         }
         
         for(int i=res.size()-1; i>=0;i--)  
             System.out.println(res.get(i).getIndex());
-        
+            
             cd.repaint(gc, points);
             System.out.println("res size before"+res.size());
             cd.drawLineSet(gc, res);
@@ -244,6 +275,7 @@ public class GrahmAlgo {
             cd.drawDominatePointsFromStack(gc, dominate);
             for(int i=dominate.size()-1; i>=0;i--)  
                 System.out.println(dominate.get(i).getIndex());
+            
         gw.ie.enableAfterRuning();
     }
     
