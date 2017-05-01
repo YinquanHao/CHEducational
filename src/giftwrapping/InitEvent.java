@@ -100,7 +100,18 @@ public class InitEvent {
                     Logger.getLogger(InitEvent.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
-});     
+});  
+         
+       gui.getIncrementalButton().setOnAction(new EventHandler<ActionEvent>() {
+           @Override 
+           public void handle(ActionEvent e) {
+               try {
+                   runIncre(gw.getActualPoints(),gui.getGc(),gw.getPoints());
+               } catch (InterruptedException ex) {
+                   Logger.getLogger(InitEvent.class.getName()).log(Level.SEVERE, null, ex);
+               }
+   }
+});
         gui.getCanvas().setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -226,6 +237,20 @@ public class InitEvent {
          newThread = new Thread(algo);
          newThread.start();  
     }
+    private void runIncre(ArrayList<Point> Actualpoints, GraphicsContext gc,ObservableList<Point> points) throws InterruptedException{
+        disableWhileRuning();
+    	Task<Void> algo = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                //GiftWrappingAlgo graham = new GiftWrappingAlgo(Actualpoints,gc,points,cd);
+                gw.getSteps().clear();
+            	IncrementAlgo i = new IncrementAlgo(Actualpoints,gc,points,cd,gw,gui);
+                return null;
+            }
+        };
+        newThread = new Thread(algo);
+         newThread.start(); 
+    }    
     private void disableWhileRuning(){
         gui.getClearAll().setDisable(true);
         gui.getClearPrev().setDisable(true);

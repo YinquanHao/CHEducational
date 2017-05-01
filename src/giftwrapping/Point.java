@@ -22,6 +22,15 @@ public class Point implements Comparable<Point>{
     private double y;
     private double axisX;
     private double axisY;
+    private Edge conflictEdge;
+
+    public Edge getConflictEdge() {
+        return conflictEdge;
+    }
+
+    public void setConflictEdge(Edge conflictEdge) {
+        this.conflictEdge = conflictEdge;
+    }
     
     
     public Point(int index, double x, double y) {

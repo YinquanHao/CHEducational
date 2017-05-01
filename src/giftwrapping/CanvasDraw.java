@@ -128,4 +128,20 @@ public class CanvasDraw {
         
     }
     
+    public void highlightResult(GraphicsContext gc, Point pt){
+        gc.setFill(Color.RED);
+        gc.fillOval(pt.getX()-2.5, pt.getY()-2.5, 10, 10);
+        gc.setFill(Color.GREEN);
+    }
+    public void drawGreenLine(GraphicsContext gc, Point from, Point to){
+        gc.setStroke(Color.GREEN);
+        gc.strokeLine(from.getX()+2.5, from.getY()+2.5, to.getX()+2.5, to.getY()+2.5); 
+        gc.setStroke(Color.BLUE);
+    }
+    public void drawBlackLine(GraphicsContext gc, Point from, Point to){
+        gc.setStroke(Color.BLACK);
+        gc.strokeLine(from.getX()+2.5, from.getY()+2.5, to.getX()+2.5, to.getY()+2.5); 
+        gc.setStroke(Color.BLUE);
+    }
+    
 }
