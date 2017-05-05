@@ -202,7 +202,7 @@ public class InitGui {
         this.scene = scene;
     }
         HBox hbox = new HBox();
-        Label fpsLable = new Label("FPS:");
+        Label fpsLable = new Label("Interval:");
         Canvas canvas = new Canvas(800,600);
         GraphicsContext gc;
         Axes xyAxis  = new Axes(

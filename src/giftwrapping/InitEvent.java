@@ -244,7 +244,11 @@ public class InitEvent {
             protected Void call() throws Exception {
                 //GiftWrappingAlgo graham = new GiftWrappingAlgo(Actualpoints,gc,points,cd);
                 gw.getSteps().clear();
-            	IncrementAlgo i = new IncrementAlgo(Actualpoints,gc,points,cd,gw,gui);
+                ArrayList<Point> modified = new ArrayList<Point>();
+                for(Point pts:Actualpoints){
+                    modified.add(pts);
+                }
+            	IncrementAlgo i = new IncrementAlgo(modified,gc,points,cd,gw,gui);
                 return null;
             }
         };

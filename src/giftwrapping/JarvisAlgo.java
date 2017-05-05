@@ -29,11 +29,11 @@ public class JarvisAlgo {
     private InitGui gui;
     String ADD_RIGHT_MOST_TO_CONVEX = "add right Most Point % to convex ";
     String ADD_TO_CONVEX = "add Point % to convex";
-    String ADD_TO_DOMINATE = "add point % to dominate points set";
-    String CHK_IF_DOMINATE = "check if point % is dominate point.";
+    String ADD_TO_DOMINATE = "add point % to non-dominated points set";
+    String CHK_IF_DOMINATE = "check if point % is non-dominated point.";
     String CHK_IF_CCW = "check if triangle % % % is CCW";
     String IS_CCW = "Triangle % % % is CCW";
-    String NOT_DOMINATE ="Point % is not a dominate point";
+    String NOT_DOMINATE ="Point % is not a non-dominate point";
     String NOT_CCW ="Triangle % % % is not CCW";
     
     public JarvisAlgo(ArrayList<Point> input,GraphicsContext gc, ObservableList<Point> points, CanvasDraw cd, Giftwrapping gw, InitGui gui) throws InterruptedException{

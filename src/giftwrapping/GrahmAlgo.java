@@ -29,10 +29,10 @@ public class GrahmAlgo {
     String ADD_TO_CONVEX = "Temporary add point % to Convex set";
     String ADD_TO_CONVEX_TURE = "Add right most point % to Convex set";
     String POP = "Pop out the point % from our result stack";
-    String ADD_TO_DOMINATE = "add point % to dominate points set";
-    String CHK_IF_DOMINATE = "check if point % is dominate point.";
+    String ADD_TO_DOMINATE = "add point % to non-dominated points set";
+    String CHK_IF_DOMINATE = "check if point % is non-dominated point.";
     String IS_CCW = "Triangle % % % is CCW";
-    String NOT_DOMINATE ="Point % is not a dominate point";
+    String NOT_DOMINATE ="Point % is not a non-dominate point";
     
     
     public GrahmAlgo(ArrayList<Point> input,GraphicsContext gc, ObservableList<Point> points, CanvasDraw cd, Giftwrapping gw, InitGui gui) throws InterruptedException{
