@@ -1,2 +1,2 @@
 # CHEducational
-This is a JavaFX desktop application, which implemented an tutorial application for mutiple convex hull algorithm(giftwrapping and etc).
+This is a JavaFX desktop application, which implemented a tutorial application for mutiple convex hull algorithm (giftwrapping and etc).
